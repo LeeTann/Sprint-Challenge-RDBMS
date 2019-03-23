@@ -13,6 +13,17 @@ module.exports = {
         return db('projects')
         .insert(project)
     },
+
+    getProjectsbyId: (id) => {
+        return db('projects')
+        .where({id: id})
+    },
+
+    getProjectsbyIdbyActions: (id) => {
+        return db('actions')
+        .join('projects', {'project.id': 'actions.project_id'})
+        .where({'action.project_id': id})
+    },
     
     getActions: () => {
         return db('actions')
